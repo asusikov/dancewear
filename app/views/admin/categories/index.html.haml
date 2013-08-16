@@ -1,0 +1,37 @@
+= content_for :navlist do
+	.span3
+		%h2
+			= t('sections')
+		%ul.nav.nav-tabs.nav-stacked
+			- @sections.each do |section_item|
+				%li{ :class => ('active' if @current_section and @current_section.id == section_item.id) }
+					= link_to section_item.title, admin_section_categories_path(section_item), { "data-section-id" => section_item.id }
+
+.span9
+	%h2
+		= t('categories')
+	.well.well-small.well-block
+		- if @current_section
+			%legend.legend-button
+				= add_button new_admin_section_category_path(@current_section)
+		%table.table.table-condensed
+			%thead
+				%tr
+					%th.id ID
+					%th.title 
+						= Category.human_attribute_name(:title)
+					%th 
+						= Category.human_attribute_name(:section)
+					%th.actions
+				%tbody
+					- @categories.each do |category_item| 
+						%tr
+							%td 
+								= category_item.id
+							%td 
+								= link_to category_item.title, admin_section_category_path(category_item.section, category_item)
+							%td
+								= link_to category_item.section.title, admin_section_categories_path(category_item.section)
+							%td.actions
+								= edit_small_button edit_admin_section_category_path(category_item.section, category_item)
+								= delete_small_button admin_section_category_path(category_item.section, category_item), category_item.title

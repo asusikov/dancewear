@@ -1,0 +1,11 @@
+= simple_form_for [:admin, @item] do |f|
+	%fieldset
+		%h2
+			= @header
+		.well.well-small.well-block
+			%legend.legend-button
+				= save_button
+				= cancel_button @item.id ? admin_section_path(@item) : admin_sections_path
+			.control-group
+				= f.input :title
+			

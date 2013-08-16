@@ -1,0 +1,15 @@
+%h2 
+	= t('events')
+
+- @posts.each do |post_item|
+	.row-fluid.dotted
+		.span12.post{ 'data-post-id' => post_item.id }
+			= link_to post_item.title, post_path(post_item), :class => 'title'
+			.row-fluid.padding-text
+				.span2
+					= image_tag post_item.avatar.url(:thumb), :class => 'img-polaroid'
+				.span10
+					- append_text = post_item.body.to_s == '' ? '' : link_to(t('details'), post_path(post_item), :class => 'details')
+					= (post_item.announcement + append_text).html_safe
+
+= will_paginate @posts

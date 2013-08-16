@@ -1,0 +1,9 @@
+%h2 
+	= @item.title
+
+.row-fluid.dotted
+	.span12
+		- if @item.body.to_s == ''
+			= @item.announcement.html_safe
+		- else
+			= @item.body.html_safe

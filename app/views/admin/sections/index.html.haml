@@ -1,0 +1,22 @@
+%h2
+	= t('sections')
+.well.well-small.well-block
+	%legend.legend-button
+		= add_button new_admin_section_path
+	%table.table.table-condensed
+		%thead
+			%tr
+				%th.id ID
+				%th 
+					= Section.human_attribute_name(:title)
+				%th.actions
+			%tbody
+				- @items.each do |section| 
+					%tr
+						%td 
+							= section.id
+						%td 
+							= link_to section.title, admin_section_path(section) 
+						%td.actions
+							= edit_small_button edit_admin_section_path(section)
+							= delete_small_button admin_section_path(section), section.title

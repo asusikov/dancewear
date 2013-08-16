@@ -1,0 +1,13 @@
+= simple_form_for [:admin, @item] do |f|
+	%fieldset
+		%h2
+			= @header
+		.well.well-small.well-block
+			%legend.legend-button
+				= save_button
+				= cancel_button @item.id ? admin_post_path(@item) : admin_posts_path
+			.control-group
+				= f.input :title, input_html: { class: 'input-xxlarge' }
+				= f.input :avatar, :as => :file
+				= f.input :announcement, :as => :ckeditor, :input_html => { :ckeditor => { :toolbar => 'mini' } }
+				= f.input :body, :as => :ckeditor, :input_html => { :ckeditor => { :toolbar => 'mini' } }

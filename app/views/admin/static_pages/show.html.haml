@@ -1,0 +1,7 @@
+%h2
+	= @header
+.well.well-small.well-block
+	%legend.legend-button
+		= edit_button edit_admin_static_page_path(@item)
+	= show_form @item do |f|
+		= f.text :body

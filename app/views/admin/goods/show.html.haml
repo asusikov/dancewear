@@ -1,0 +1,16 @@
+%h2
+	= @header
+.well.well-small.well-block
+	%legend.legend-button
+		= edit_button edit_admin_section_category_good_path(@item.category.section, @item.category, @item)
+		= delete_button admin_section_category_good_path(@item.category.section, @item.category, @item), @item.title
+	= show_form @item do |f|
+		= f.text :title
+		= f.custom_value :category do |item|
+			- @item.category.title
+		= f.custom_value :price do |item|
+			- number_to_currency @item.price, :precision => 0
+		= f.custom_value :avatar do |item|
+			- image_tag item.avatar.url(:thumb), :class => 'img-polaroid', :style => 'margin-bottom: 10px'
+		= f.text :announcement
+		= f.text :description

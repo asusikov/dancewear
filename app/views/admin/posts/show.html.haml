@@ -1,0 +1,12 @@
+%h2
+	= @header
+.well.well-small.well-block
+	%legend.legend-button
+		= edit_button edit_admin_post_path(@item)
+		= delete_button admin_post_path(@item), @item.title
+	= show_form @item do |f|
+		= f.text :title
+		= f.custom_value :avatar do |item|
+			- image_tag @item.avatar.url(:thumb), :class => 'img-polaroid', :style => 'margin-bottom: 10px'
+		= f.text :announcement
+		= f.text :body

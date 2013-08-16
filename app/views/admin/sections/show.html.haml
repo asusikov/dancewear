@@ -1,0 +1,8 @@
+%h2
+	= @header
+.well.well-small.well-block
+	%legend.legend-button
+		= edit_button edit_admin_section_path(@item)
+		= delete_button admin_section_path(@item), @item.title
+	= show_form @item do |f|
+		= f.text :title

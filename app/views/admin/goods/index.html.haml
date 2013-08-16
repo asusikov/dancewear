@@ -1,0 +1,38 @@
+= content_for :navlist do
+	.span3
+		%h2
+			= t('catalog')
+		%ul.nav.nav-tabs.nav-stacked
+			- @sections.each do |section_item|
+				%li{ :class => ('active' if @current_section and @current_section.id == section_item.id and not @current_category) }
+					= link_to section_item.title, admin_section_goods_path(section_item), { "data-section-id" => section_item.id }
+				- section_item.categories.each do |category_item|
+					%li{ :class => ('active' if @current_category and @current_category.id == category_item.id) }
+						= link_to category_item.title, admin_section_category_goods_path(section_item, category_item), { :class => 'category', "data-category-id" => category_item.id }
+
+.span9
+	%h2
+		= t('goods')
+	.well.well-small.well-block
+		- if @current_category
+			%legend.legend-button
+				= add_button new_admin_section_category_good_path(@current_section, @current_category)
+		%table.table.table-condensed
+			%thead
+				%th.id ID
+				%th 
+					= Good.human_attribute_name(:title)
+				%th.actions
+			%tbody
+				- @goods.each do |good| 
+					%tr
+						%td 
+							= good.id
+						%td 
+							= link_to good.title, admin_section_category_good_path(good.category.section, good.category, good)
+						%td.actions
+							= edit_small_button edit_admin_section_category_good_path(good.category.section, good.category, good)
+							= delete_small_button admin_section_category_good_path(good.category.section, good.category, good), good.title
+
+		= will_paginate @goods, :renderer => BootstrapPagination::Rails
+		

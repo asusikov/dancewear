@@ -1,0 +1,14 @@
+= simple_form_for [:admin, @item.category.section, @item.category, @item] do |f|
+	%fieldset
+		%h2
+			= @header
+		.well.well-small.well-block
+			%legend.legend-button
+				= save_button
+				= cancel_button @item.id ? admin_section_category_good_path(@item.category.section, @item.category, @item) : admin_section_category_goods_path(@item.category.section, @item.category)
+			.control-group
+				= f.input :title, input_html: { class: 'input-xxlarge' }
+				= f.input :price
+				= f.input :avatar, :as => :file
+				= f.input :announcement, :as => :ckeditor, :input_html => { :ckeditor => { :toolbar => 'mini' } }
+				= f.input :description, :as => :ckeditor, :input_html => { :ckeditor => { :toolbar => 'mini' } }

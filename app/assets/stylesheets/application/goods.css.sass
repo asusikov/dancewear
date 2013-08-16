@@ -1,0 +1,50 @@
+@import 'main'
+
+.section 
+	background-color: transparent
+	text-transform: uppercase
+	padding: 10px
+	border-bottom: 1px solid $border-color
+	a
+		@include text-link
+	&.open
+		border-bottom: none
+
+.category
+	padding: 5px 10px 5px 20px
+	margin: 1px 0 1px 0
+	text-transform: uppercase
+	a
+		@include text-link
+
+.categories
+	border-bottom: 1px solid $border-color
+
+.goods 
+	padding-top: 10px
+
+.goods-list
+	padding-left: 25px
+	margin-left: 15px
+	border-left: 1px solid $border-color
+
+.good
+	margin-bottom: 20px
+	background-color: white
+	.price
+		height: 45px
+		background-color: $border-color
+		color: $text-color
+		padding-top: 3px
+
+.span7.good-description
+	min-height: 100%
+	padding-left: 20px
+	border-left: 1px solid $border-color
+	min-height: 390px
+
+.menu 
+	div:last-child
+		border-bottom: none
+	.active
+		font-weight: bold

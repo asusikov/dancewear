@@ -1,0 +1,24 @@
+%h2
+	= t('posts')
+.well.well-small.well-block
+	%legend.legend-button
+		= add_button new_admin_post_path
+	%table.table.table-condensed
+		%thead
+			%tr
+				%th.id ID
+				%th 
+					= Post.human_attribute_name(:title)
+				%th.actions
+			%tbody
+				- @posts.each do |post| 
+					%tr
+						%td 
+							= post.id
+						%td 
+							= link_to post.title, admin_post_path(post) 
+						%td.actions
+							= edit_small_button edit_admin_post_path(post)
+							= delete_small_button admin_post_path(post), post.title
+								
+	= will_paginate @posts, :renderer => BootstrapPagination::Rails

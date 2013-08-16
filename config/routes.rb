@@ -1,4 +1,39 @@
 Dancewear::Application.routes.draw do
+
+  get "good/:id" => 'goods#show', :as => 'good'
+
+  get 'posts' => 'posts#index'
+  get 'posts/:id' => 'posts#show', :as => 'post'
+
+  get 'goods' => 'goods#index'
+  get 'goods/:section' => 'goods#index', :as => 'section_goods'
+  get 'goods/:section/:category' => 'goods#index', :as => 'category_goods'
+
+  get 'admin' => 'admin/home#index'
+  namespace :admin do
+    resources :sections do
+      resources :categories do
+        resources :goods
+      end
+      get 'goods' => 'goods#index'
+    end
+    resources :posts
+    resources :static_pages
+    get 'categories' => 'categories#index'
+    get 'goods' => 'goods#index'
+  end
+
+  devise_for :user, :skip => [:passwords, :registrations]
+  devise_scope :user do
+    get '/admin/login' => 'devise/sessions#new', :as => 'new_user_session'
+    delete '/admin/logout' => 'devise/sessions#destroy', :as => 'destroy_user_session'
+  end
+  
+
+  # scope '/admin' do
+  #   resources :sections, :as => 'admin_sections'
+  # end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +83,9 @@ Dancewear::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'main#index'
+
+  get '/:id' => 'static_pages#show'
 
   # See how all your routes lay out with "rake routes"
 

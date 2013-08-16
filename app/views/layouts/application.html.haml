@@ -1,0 +1,33 @@
+!!! 5
+%html(lang="en")
+  %head
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title= content_for?(:title) ? yield(:title) : "Dancewear"
+    / = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    %header
+      .container
+        .row-fluid
+          .span3
+            %h1.top-brand
+              = link_to t('brandname'), root_path
+          .span9
+            %ul.top-bar
+              %li
+                = link_to t('posts'), posts_path
+              %li.divider
+                \/
+              %li
+                = link_to t('catalog'), goods_path
+              %li.divider
+                \/
+              %li
+                = link_to t('contacts'), '/contacts'
+    .container
+      .inner-container
+        = yield

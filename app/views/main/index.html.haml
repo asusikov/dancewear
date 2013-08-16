@@ -1,0 +1,46 @@
+.main
+
+	#goodsCarousel.carousel.slide
+		.carousel-inner
+			- @goods.each_with_index do |good_item, index|
+				%a.item{ :href => "#{good_path(good_item)}", 'data-good-id' => good_item.id, :class => index == 0 ? "active" : ""}
+					.row-fluid{ :style => "background-color: white" }
+						.span8
+							.row-fluid{ :style => "margin: 40px 0 20px 0" }
+								.span11.offset1
+									%h1{ :style => "float: right; text-align:right" } 
+										= good_item.title
+							.row-fluid
+								.span11.offset1
+									%h4{ :style => "float: right; text-align:right; color: #93979d; font-weight: normal;" } 
+										= good_item.announcement.html_safe
+							.row-fluid
+								.span3.offset9
+									%h2{ :style => "float: right" } 
+										= number_to_currency(good_item.price, :precision => 0)
+						.span4
+							= image_tag good_item.avatar.url(:medium), :style => "float: right"
+
+	
+
+	%h3 
+		= t('recent_events')
+
+	.row-fluid.dotted
+		- count_posts = 4
+		- 2.times do |index|
+			- if @posts.slice(index * count_posts, count_posts) 
+				.row-fluid
+					- @posts.slice(index * count_posts, count_posts).each do |post_item|
+						.post.span3{ 'data-post-id' => post_item.id }
+							/ %span.date
+							/ 	22.12.2013
+							%h4
+								= link_to post_item.title, post_path(post_item), { :class => 'title' }
+							%span
+								= post_item.announcement.html_safe
+
+:coffeescript
+	jQuery ->
+		$('#goodsCarousel').carousel
+			inreval: 5000

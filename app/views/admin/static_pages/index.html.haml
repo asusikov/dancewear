@@ -1,0 +1,19 @@
+%h2
+	= t('pages')
+.well.well-small.well-block
+	%table.table.table-condensed
+		%thead
+			%tr
+				%th.id ID
+				%th 
+					= StaticPage.human_attribute_name(:title)
+				%th.actions
+			%tbody
+				- @items.each do |item| 
+					%tr
+						%td 
+							= item.id
+						%td 
+							= link_to item.title, admin_static_page_path(item)
+						%td.actions
+							= edit_small_button edit_admin_static_page_path(item)

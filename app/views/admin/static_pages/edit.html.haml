@@ -1,0 +1,10 @@
+= simple_form_for [:admin, @item] do |f|
+	%fieldset
+		%h2
+			= @header
+		.well.well-small.well-block
+			%legend.legend-button
+				= save_button
+				= cancel_button admin_static_page_path(@item)
+			.control-group
+				= f.input :body, :as => :ckeditor, :input_html => { :ckeditor => { :toolbar => 'mini' } }

@@ -2,4 +2,30 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  brandname: "Dancewear"
+  form:
+    cancel: "Cancel"
+    browse: "Browse"
+    add: "Add"    
+    edit: "Edit"
+    delete: "Delete"
+    save: "Save"
+    confirm_delete: "Confirm delete"
+    confirm_text: "Are you sure to delete \"%{title}\"?"
+  posts: "Events"
+  catalog: "Catalog"
+  contacts: "Conctacts"
+  pages: "Pages"
+  sections: "Sections"
+  categories: "Categories"
+  recent_events: "Recent events"
+  details: " Details..."
+  goods: "Goods"
+  log_in: "Log in"
+  log_out: "Log out"
+  sign_in: "Sign in"
+  model:
+    new: "new item"
+    save_error: "Error during saving"
+    save_success: "Item successfully saved"
+    delete_success: "Item successfully deleted"

@@ -1,0 +1,10 @@
+%h2
+	= @header
+.well.well-small.well-block
+	%legend.legend-button
+		= edit_button edit_admin_section_category_path(@item.section, @item)
+		= delete_button admin_section_category_path(@item.section, @item), @item.title
+	= show_form @item do |f|
+		= f.text :title
+		= f.custom_value :section do |item| 
+			- item.section.title
